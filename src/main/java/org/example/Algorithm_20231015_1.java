@@ -1,6 +1,6 @@
 package org.example;
 
-public class Algorithm_20231015 {
+public class Algorithm_20231015_1 {
     public static void main(String[] args) {
         int n = 0;
         String control = "wsdawsdassw";
