@@ -4,21 +4,23 @@ import java.util.Arrays;
 
 public class Algorithm_20231024 {
     public static void main(String[] args) {
+        System.out.println(match(4, 3));
+    }
+
+    public static String match(int i, int k) {
         String[] players = {"mumu", "soe", "poe", "kai", "mine"};
         String[] callings = {"kai", "kai", "mine", "mine"};
         String name = "";
 
-        for(int i = 0; i < callings.length; i++) {
-            for(int j = 0; j < players.length; j++) {
-                if(callings[i].equals(players[j])) {
-                    name = players[j-1];
-                    players[j-1] = players[j];
-                    players[j] = name;
-                }
-            }
-
+        if(players[i - 4] == callings[k - 3]) {
+            k += 1;
+            System.out.println(i + " " + players[i - 4]);
+            name = players[i - 4];
+        } else {
+            i += 1;
         }
 
-        System.out.println(Arrays.toString(players));
+        return name;
     }
+
 }
