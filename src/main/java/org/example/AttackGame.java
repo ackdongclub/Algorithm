@@ -28,8 +28,17 @@ public class AttackGame {
 
             if(health > realH && attacks == false) {
                 realH += bandage[1] ;
+
+                if(realH > health) {
+                    realH = health;
+                }
+
                 if(a % bandage[0] == 0 && a != 0) {
                     realH += bandage[2];
+
+                    if(realH > health) {
+                        realH = health;
+                    }
                     System.out.println( i + "-  " + realH + " +bonus");
                 }
             }
