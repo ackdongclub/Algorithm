@@ -1,51 +1,24 @@
 package org.example;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 public class AttackGame {
     public static void main(String[] args) {
-        int[] bandage = {1, 1, 1}; // t시전시간, x, y
-        int health = 5; //limit HP
-        int[][] attack = {{1, 2}, {3, 2}}; // 공격시간, 피해량
-        boolean attacks = false; // 공격당했냐 안당했냐
-        int realH = health;
-        int a = 0;
-
-        for(int i = 0; i <= attack[attack.length-1][0]; i++) {
-            ++a;
-            attacks = false;
-            System.out.println( i + "-  " + realH + "  -" + attacks);
-
-            for(int j = 0; j < attack.length; j++) {
-                if(attack[j][0] == i) {
-                    a = 0;
-                    attacks = true;
-                    realH -= attack[j][1];
-                    System.out.println( i + "-  " + realH + "  -" + attacks);
-                }
-            }
-
-            if(health > realH && attacks == false) {
-                realH += bandage[1] ;
-
-                if(realH > health) {
-                    realH = health;
-                }
-
-                if(a % bandage[0] == 0 && a != 0) {
-                    realH += bandage[2];
-
-                    if(realH > health) {
-                        realH = health;
+        int[] bandage = {5, 1, 5}; // t시전시간, x 1초마다 회복, y
+        int health = 10; //limit HP
+        int[][] attacks = {{2, 10}, {9, 15}, {10, 5},{11, 5}}; // 공격시간, 피해량
+        int answer = health;
+        int bonus = 0;
+        // ***체력이 0이 되면 더이상 붕대감기 불가***
+        for(int i = 1; i <= attacks[attacks.length-1][0]; i++) { // 11초 동안 돌아감
+            for(int j = 0; j < attacks.length; j++) {
+                if(i == attacks[j][0]) {
+                    if(answer > 0) {
+                        answer -= attacks[j][1];
+                    } else if (answer <= 0) {
+                        answer = -1;
                     }
-                    System.out.println( i + "-  " + realH + " +bonus");
                 }
             }
-
-
         }
-        System.out.println(realH);
 
     }
 
