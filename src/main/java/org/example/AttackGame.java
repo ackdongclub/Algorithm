@@ -2,63 +2,55 @@ package org.example;
 
 public class AttackGame {
     public static void main(String[] args) {
-        int[] bandage = {3, 2, 7}; // t시전시간, x 1초마다 회복, y
+        int[] bandage = {3, 2, 7}; // t시전시간, x 1초마다 회복, y 보너스 점수
         int health = 20; //limit HP
         int[][] attacks = {{1, 15}, {5, 16}, {8, 6}}; // 공격시간, 피해량
-        int answer = health;
+
         int bonus = 0;
-        boolean attackYn = false;
+        int answer = health;
+        int damage = 0;
+        int value = 0;
+        boolean attYn = false;
 
-        for(int i = 1; i <= attacks[attacks.length-1][0]; i++) {
+        //attacks의 시간만큼 돌아야 함
+        for(int i = 0; i <= attacks[attacks.length-1][0]; i++) {
+            System.out.println(i + "회");
+            attYn = false;
             bonus++;
-            attackYn = false;
 
-            //11초
-            //생명 깍이는 조건
+            if(answer >= health) answer = health; // max
+
             for(int j = 0; j < attacks.length; j++) {
-                //공격 시간이 되면 공격
-                if(i == attacks[j][0]) {
-                    attackYn = true;
-                    if(attackYn == true) {
-                        bonus = 0;
-                        if (answer <= 0) {
-                            System.out.println("캐릭터 사망 : " + -1);
-                            answer = -1;
-                        } else {
-                            answer -= attacks[j][1];
-                            System.out.println(i + " - " + " -" + attacks[j][1] + " = " + answer);
-                        }
-                    }
-                }
+               value = attacks[j][0];
+                System.out.println("value : " + value + " / j : " + j);
+               //공격
+               if(i == value && answer > 0) {
+                   bonus  = 0; // 공격 받으면 초기화
+                   attYn = true;
+                   damage = attacks[j][1];
+               }
             }
 
-            //생명 회복 조건
-            if(attackYn == false) {
-                if(answer == health) {
-                    answer = health; //최대 생명을 넘을 수 없음
-                    System.out.println(i + " - " + answer);
-                } else if (answer <= 0) {
-                    answer = 0;
-                } else {
-                    answer += bandage[1];
-                    System.out.println(i + " - " + " +" + bandage[1] + " = " + answer);
-
-                    if(bonus == bandage[0]) {
-                        bonus = 0;
-                        answer += bandage[2];
-                        if(answer == health) {
-                            answer = health; //최대 생명을 넘을 수 없음
-                        }
-                        System.out.println( " bonus : " + i + " - " + " +" + bandage[1] + " = " + answer);
-                    }
+            //반영
+            if(attYn == true) {
+                System.out.print(answer + " - " + damage + " = ");
+                answer -= damage;
+                System.out.println(answer + "\n");
+            } else if (attYn == false && answer < health && answer > 0) {
+                System.out.print(answer + " + " + bandage[1] + " = ");
+                answer += bandage[1];
+                System.out.println(answer + "\n");
+                if(bonus == bandage[0]) {
+                    System.out.print(answer + " = ");
+                    bonus = 0;
+                    answer += bandage[2];
+                    System.out.println(answer + " +bonus \n");
                 }
             }
+            if(answer <= 0) answer = -1; // dead
         }
 
-        if(answer <= 0) {
-            answer = -1;
-        }
-        System.out.println("생명 : " + answer);
+        System.out.println(answer);
     }
 
 }
