@@ -13,6 +13,7 @@ public class PracticeMapper {
         map.put("one", 1);
         map.put("two", 2);
         map.put("two", 3);
+        map.put("two", 4);
         listMap.add(map);
 
         for(Map<String, Object> i : listMap) {
