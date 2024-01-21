@@ -1,9 +1,8 @@
 package org.example;
 
 import org.apache.commons.lang.time.StopWatch;
-import org.w3c.dom.ls.LSOutput;
 
-public class Algoritm_20240121 {
+public class Algorithm_20240121_1 {
     public static void main(String[] args) {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
