@@ -1,8 +1,13 @@
 package org.example;
 
-public class Algoritm_20240121 {
+import org.apache.commons.lang.time.StopWatch;
+import org.w3c.dom.ls.LSOutput;
 
+public class Algoritm_20240121 {
     public static void main(String[] args) {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+
         String board[][] = {{"blue", "red", "orange", "red"}
                            ,{"red", "red", "blue", "orange"}
                            ,{"blue", "orange", "red", "red"}
@@ -51,5 +56,9 @@ public class Algoritm_20240121 {
             }
         }
         System.out.println(result);
+
+        stopWatch.stop();
+        System.out.println("수행시간: " + stopWatch.getTime() + " ms");
     }
+
 }
